@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: pet-intel-api
+    env: docker
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pet-intel-db
+          property: connectionString
+      # add later:
+      # - key: APPLE_AUDIENCE
+      #   value: com.your.bundleid
+
+databases:
+  - name: pet-intel-db
+    plan: starter
